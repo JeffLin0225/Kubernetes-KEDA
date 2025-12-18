@@ -1,0 +1,53 @@
+# --- 1. 定義你的 .NET 程式 Deployment ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-worker
+  labels:
+    app: demo-worker
+spec:
+  replicas: 0 # 初始為 0
+  selector:
+    matchLabels:
+      app: demo-worker
+  template:
+    metadata:
+      labels:
+        app: demo-worker
+    spec:
+      containers:
+      - name: demo-worker
+        image: keda-worker:v2 # 你的 Image 名字
+        imagePullPolicy: IfNotPresent # 讓它優先用本地 OrbStack 的 Image
+        env:
+        # 覆寫 appsettings.json 中的 BootstrapServers
+        - name: Kafka__BootstrapServers 
+          value: "host.docker.internal:9092" 
+        # 覆寫 ConsumerGroupId
+        - name: Kafka__ConsumerGroupId
+          value: "worker-group-id" 
+        # 覆寫 Input Topic
+        - name: Kafka__InputTopic
+          value: "source-topic"
+        - name: Kafka__OutputTopic
+          value: "router-topic"
+---
+# --- 2. 定義 KEDA 規則 ScaledObject ---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: demo-kafka-scaler
+spec:
+  scaleTargetRef:
+    name: demo-worker # 指向上面那個 Deployment
+  pollingInterval: 30 # (選填) KEDA 檢查 Kafka 的頻率，預設 30 秒
+  cooldownPeriod: 30  # <--- 這裡！沒事做之後，冷卻 30 秒就縮容 (預設是 300)
+  minReplicaCount: 0  # 沒事做就縮到 0
+  maxReplicaCount: 5  # 最多開 5 個
+  triggers:
+  - type: kafka
+    metadata:
+      bootstrapServers: "host.docker.internal:9092"
+      topic: source-topic      # 監聽的 Topic 必須與你的程式碼一致
+      consumerGroup: worker-group-id # 必須與你的程式碼一致
+      lagThreshold: "5"        # 每積壓 5 筆訊息，開 1 個 Pod

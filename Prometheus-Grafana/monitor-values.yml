@@ -1,0 +1,36 @@
+# Prometheus-Grafana/monitor-values.yaml
+
+# 1. Grafana 設定
+grafana:
+  adminPassword: "admin" # 方便登入測試，正式環境請改掉
+  persistence:
+    enabled: true
+    size: 2Gi # 儀表板設定檔存 2GB 夠了
+  service:
+      # type: ClusterIP
+    type: LoadBalancer # 不需要 forward 
+    port: 3000        # 指定對外用 3000 port
+    targetPort: 3000  # 確保目標也是 3000
+
+
+# 2. Prometheus 設定
+prometheus:
+  prometheusSpec:
+    # 資料保留幾天？(本地開發設 5 天就好，不然硬碟會爆)
+    retention: 5d
+    
+    # 資料要存多少？
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
+
+    # --- 關鍵設定 ---
+    # 預設 Prometheus 只會抓自己 namespace (monitoring) 的東西
+    # 把它設為 false，它才會去抓 .NET App (在 default namespace)
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false

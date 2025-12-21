@@ -1,7 +1,11 @@
 *** 安裝KEDA ***
 1. 本地加入 Helm Chart 路徑	
 helm repo add kedacore https://kedacore.github.io/charts
-helm repo add bitnami https://charts.bitnami.com/bitnami	
+
+*** 安裝Promethus ***
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+<!-- helm repo add bitnami https://charts.bitnami.com/bitnami	 -->
 
 2. 更新到 cache	(每次加入 Chart 就要套用)
 helm repo update	

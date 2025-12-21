@@ -9,15 +9,6 @@
 * 並在處理完畢後自動縮容回 0 (Scale-to-Zero)，實現類似 Serverless 的資源管理。
 
 ---
-###### 實戰筆記與踩坑紀錄 (Key Takeaways) ######
-*在實作過程中解決了以下關鍵問題，供日後參考*
-
-1.  Consumer Group 一致性：KEDA ScaledObject 監控的 Group ID 必須與應用程式 (appsettings.json) 內的設定完全一致，否則會導致監控到錯誤的 Lag 數據。
-2.  Offset 初始化問題 (Ghost Lag)：當 Kafka Topic 重建後，Consumer 必須至少成功讀取並 Commit 一次訊息，將 Offset 從 unknown 轉為數字，KEDA 才能正確判斷並執行縮容至 0。
-3.  Partition 分配與測試技巧：
-    使用 Console Producer 手動測試時，若發送速度過慢，Kafka 的 Sticky Partition 機制會導致訊息集中在單一 Partition。測試時建議使用 Script 快速大量發送訊息，以確保負載均衡分配。
-
----
 ###### 系統架構 (Architecture) ######
 *本專案運行於本地開發環境 (Mac mini + OrbStack)，模擬生產環境的事件驅動架構。*
 
@@ -115,3 +106,12 @@ flowchart TB
 <br/>**操作與驗證**：
     *環境就緒後，請參閱 Operating_steps.md* 
 > 內容包含：部署 .NET Worker、套用 KEDA ScaledObject 規則、發送測試訊息、以及驗證自動擴縮容 (Scale Out / Scale In) 的結果。
+
+---
+###### 實戰筆記與踩坑紀錄 (Key Takeaways) ######
+*在實作過程中解決了以下關鍵問題，供日後參考*
+
+1.  Consumer Group 一致性：KEDA ScaledObject 監控的 Group ID 必須與應用程式 (appsettings.json) 內的設定完全一致，否則會導致監控到錯誤的 Lag 數據。
+2.  Offset 初始化問題 (Ghost Lag)：當 Kafka Topic 重建後，Consumer 必須至少成功讀取並 Commit 一次訊息，將 Offset 從 unknown 轉為數字，KEDA 才能正確判斷並執行縮容至 0。
+3.  Partition 分配與測試技巧：
+    使用 Console Producer 手動測試時，若發送速度過慢，Kafka 的 Sticky Partition 機制會導致訊息集中在單一 Partition。測試時建議使用 Script 快速大量發送訊息，以確保負載均衡分配。

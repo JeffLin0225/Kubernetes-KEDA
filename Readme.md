@@ -9,6 +9,11 @@
  並在處理完畢後自動縮容回 0 (Scale-to-Zero)，實現類似 Serverless 的資源管理。
 
 ---
+###### 實作影片 (Experimental Video)
+<video src="https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/KEDA_LabVedio.mp4" controls="controls" width="100%">
+</video>
+
+---
 ###### 系統架構 (Architecture)
 *本專案運行於本地開發環境 (Mac mini + OrbStack)，模擬生產環境的事件驅動架構。*
 

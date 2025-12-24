@@ -43,6 +43,9 @@ kubectl get pods -w
 http://localhost:<port>
 ```
 >使用 LoadBalancer ，而不使用 ClusterIP ，可以不用再 forward 
+
+3. 創建Dashboard [來源：Prometheus 語法]
+>kube_deployment_status_replicas{deployment="demo-worker"}
 ---
 ### (補充)注意指令
 

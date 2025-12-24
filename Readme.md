@@ -10,8 +10,7 @@
 
 ---
 ###### 實作影片 (Experimental Video)
-<video src="https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/KEDA_LabVedio.mp4" controls="controls" width="100%">https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/KEDA_LabVedio.mp4
-</video>
+[![實作影片(點這裡！)](https://img.shields.io/badge/Click_to_Watch-Demo_Video-blue?style=for-the-badge&logo=youtube)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/KEDA_LabVedio.mp4)
 
 ---
 ###### 系統架構 (Architecture)

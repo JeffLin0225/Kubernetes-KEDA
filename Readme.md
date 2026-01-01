@@ -11,7 +11,8 @@
 ---
 ###### 實作影片 (Experimental Video)
 [![完整實作影片(點這裡！)](https://img.shields.io/badge/Click_to_實作影片(點這裡！)_Demo_Video-blue?style=for-the-badge&logo=youtube)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/KEDA_video.mp4)
-![KEDA_short](KEDA_short.gif)
+
+[![KEDA_short](KEDA_short.gif)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/KEDA_video.mp4)
 
 ---
 ###### 系統架構 (Architecture)

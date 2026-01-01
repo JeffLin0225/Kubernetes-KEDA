@@ -10,8 +10,8 @@
 
 ---
 ###### 實作影片 (Experimental Video)
-[![完整實作影片(點這裡！)](https://img.shields.io/badge/Click_to_實作影片(點這裡！)_Demo_Video-blue?style=for-the-badge&logo=youtube)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/KEDA_LabVedio.mp4)
-![Demo](demo.gif)
+[![完整實作影片(點這裡！)](https://img.shields.io/badge/Click_to_實作影片(點這裡！)_Demo_Video-blue?style=for-the-badge&logo=youtube)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/KEDA_video.mp4)
+![KEDA_short](KEDA_short.gif)
 
 ---
 ###### 系統架構 (Architecture)
@@ -102,15 +102,13 @@ flowchart TB
 ###### 執行指南 (Getting Started)  
 為了確保環境設定正確，請嚴格依照以下順序閱讀並執行文件：
 
-[![Install](https://img.shields.io/badge/Step%201-Install_Steps-brightgreen?style=for-the-badge)](https://github.com/JeffLin0225/Kubernetes-Project/blob/main/Installation.md)
-<br/>**環境安裝**：
-    *先閱讀並執行 [Installation.md](https://github.com/JeffLin0225/Kubernetes-Project/blob/main/Installation.md)* 
-> 內容包含：安裝 Docker (OrbStack)、啟用 Kubernetes、安裝 KEDA Operator、以及 Kafka 基礎建設的啟動。
+**1. 先閱讀並執行環境安裝**：<br/>
+    [![Install](https://img.shields.io/badge/Step%201-Install_Steps-brightgreen?style=for-the-badge)](https://github.com/JeffLin0225/Kubernetes-Project/blob/main/Installation.md) <br/>
 
-[![Run](https://img.shields.io/badge/Step%202-Operating_Steps-007EC6?style=for-the-badge)](https://github.com/JeffLin0225/Kubernetes-Project/blob/main/Usage.md)
-<br/>**操作與驗證**：
-    *環境就緒後，請參閱 [Usage.md](https://github.com/JeffLin0225/Kubernetes-Project/blob/main/Usage.md)* 
-> 內容包含：部署 .NET Worker、套用 KEDA ScaledObject 規則、發送測試訊息、以及驗證自動擴縮容 (Scale Out / Scale In) 的結果。
+**2. 實作報告**：<br/>
+    [![Test_Report](https://img.shields.io/badge/Step%202-Test_Report-orange?style=for-the-badge)](https://github.com/JeffLin0225/Kubernetes-Project/blob/main/Test_Report.md)
+    
+> 內容包含：安裝 Docker (OrbStack)、啟用 Kubernetes、安裝 KEDA Operator、部署 .NET Worker、套用 KEDA ScaledObject 規則、Kafka 基礎建設的啟動。
 
 ---
 ###### 實戰筆記與踩坑紀錄 (Key Takeaways) 
